@@ -1,4 +1,4 @@
-var FilterableProductTable = React.createClass({
+var AwesomeTable = React.createClass({
   getInitialState: function() {
     return {
       filterText: '',
@@ -22,8 +22,6 @@ var FilterableProductTable = React.createClass({
           onUserInput={this.handleUserInput}
         />
 
-        <div>React Magic: {this.state.filterText}</div>
-
         <ProductTable
           products={this.props.products}
           filterText={this.state.filterText}
@@ -36,6 +34,12 @@ var FilterableProductTable = React.createClass({
 
 var SearchBar = React.createClass({
   render: function() {
+    var screenText = '_';
+
+    if (this.props.filterText) {
+      screenText = this.props.filterText;
+    }
+
     return (
       <form>
         <input type="text"
@@ -45,13 +49,16 @@ var SearchBar = React.createClass({
           value={this.props.filterText}
           onChange={this.handleChange} />
 
+        <p className="screen">{screenText}</p>
+
         <p>
           <input type="checkbox"
-          ref="inStockOnlyInput"
-          checked={this.props.inStockOnly}
-          onChange={this.handleChange} />
+            id="inStockOnlyInput"
+            ref="inStockOnlyInput"
+            checked={this.props.inStockOnly}
+            onChange={this.handleChange} />
           {' '}
-          OnlyShow products in Stock.
+          <label htmlFor="inStockOnlyInput">Only show products in stock.</label>
         </p>
       </form>
     )
@@ -73,7 +80,7 @@ var ProductTable = React.createClass({
         rows = [],
         prevCat;
 
-    products.forEach(function(product) {
+    products.forEach(function(product, index) {
       // Filter out unmatched product
       if (!product.name.match(new RegExp(filterText, 'i')) ||
           (inStockOnly && !product.stocked)) {
@@ -81,15 +88,15 @@ var ProductTable = React.createClass({
       }
 
       if (product.category !== prevCat) {
-        rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
+        rows.push(<ProductCategoryRow key={product.category} category={product.category} key={product.category} />);
       }
 
-      rows.push(<ProductRow product={product} key={product.name} />);
+      rows.push(<ProductRow key={product.name} product={product} key={product.name} />);
       prevCat = product.category;
     });
 
     if (rows.length === 0) {
-      rows.push(<tr><td colSpan="2">No records found</td></tr>);
+      rows.push(<tr key="norecords"><td colSpan="2">No records found</td></tr>);
     }
 
     return (
@@ -146,6 +153,6 @@ var PRODUCTS = [
 ];
 
 ReactDOM.render(
-  <FilterableProductTable products={PRODUCTS} />,
+  <AwesomeTable products={PRODUCTS} />,
   document.getElementById('container')
 );

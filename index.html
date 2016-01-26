@@ -7,38 +7,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style type="text/css" media="screen">
+      html {
+        margin: 20px;
+        background: #F5F4F4;
+      }
+
       body, input {
+        font-family: 'Helvetica Neue', Helvetica, Arial;
+        font-size: 15px;
+      }
+
+      body {
+        width: 500px;
         padding: 20px;
-        font-family: helvetica, arial;
-        font-size: 14px;
+        margin: 20px auto;
+        background: #FFF;
       }
 
       input.textInput {
-        width: 200px;
-        height: 20px;
+        width: 500px;
+        height: 50px;
         padding: 10px;
-        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border: 1px solid #6F7A87;
       }
 
       table {
+        width: 500px;
+        margin-top: 1em;
         border-spacing; 0;
         border-collapse: collapse;
-        width: 400px;
-        margin-top: 1em;
       }
 
       table td, table th {
-        padding: 5px 10px;
-        border: 0;
+        padding: 10px 10px;
         border-bottom: 1px solid #ccc;
       }
 
       table th {
         text-align: left;
-        background: #ccc;
-        border-bottom: 1px solid #fff;
+        background: #F5F5F5;
+        border-bottom: 1px solid #6F7A87;
+      }
+
+      table thead th {
+        background: #6F7A87;
+        color: #FFF;
+      }
+
+      p.screen {
+        padding: 0 10px;
+        line-height: 50px;
+        min-height: 50px;
+        background: #27CF8B;
+        font-size: 18px;
+        font-weight: bold;
+        color: #FFF;
+        border: 1px solid #6F7A87;
       }
     </style>
   </head>
